@@ -1,0 +1,143 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sistema de Controle de Estoque">
+    <meta name="keywords" content="estoque, controle, produtos">
+    <meta name="author" content="Gabriel Ponti Perreira Cavalcante">
+    <link rel="stylesheet" href="{% static '../static/telas_css/base.css'%}">
+    <link rel="stylesheet" href="{% static '../static/telas_css/base/header.css'%}">
+    <link rel="stylesheet" href="{% static '../static/telas_css/base/main.css'%}">
+    <link rel="stylesheet" href="{% static '../static/telas_css/base/errors.css'%}">
+    <link rel="stylesheet" href="{% static '../static/telas_css/base/footer.css'%}">
+    <link rel="stylesheet" href="{% static '../static/telas_css/stock/stock.css'%}">
+    <link rel="stylesheet" href="{% static '../static/telas_css/stock/stock_new.css'%}">
+    <link rel="stylesheet" href="{% static '../static/telas_css/stock/stock_detail.css'%}">
+
+    <title>{% block title %}{%endblock %}</title>
+</head>
+
+
+<body>
+    <header class="header">
+
+        <nav class="nav-bar">
+
+            <div class="logo">
+                <a href="{% url 'StockBaseView' %}">
+                    <img src="{% static '../static/media/image.png' %}" alt="logo-loja" />
+                </a>
+
+            </div>
+
+            <div class="nav-list">
+                <ul>
+
+                    <li id="nav-item" class="nav-item">
+
+                        <a class="nav-link" href="{%url 'StockBaseView'%}">
+                            Home
+                        </a>
+                    </li>
+                    {% if user.is_authenticated and user.is_superuser %}
+
+                    <li id="nav-item" class="nav-item">
+
+                        <a class="nav-link" href="{%url  'stock_create_view'%}">
+                            Adicionar
+                        </a>
+                    </li>
+
+                    <li id="nav-item" class="nav-item">
+
+                        <a class="nav-link" href="#">
+                            Estoque
+                        </a>
+                    </li>
+                    {% endif %}
+
+                    </li>
+                    <li id="nav-item" class="nav-item">
+                        <a class="nav-link" href="{%url 'stock_list_view'%}">
+                            produtos
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="nav-div-form">
+                <form action="{%url 'stock_list_view'%}" class="form-header">
+                    <div class="container-form-header">
+
+                        <button type="submit" class="button-header">
+
+                            <svg data-testid="SearchIcon" aria-hidden="true" version="1.1"
+                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                fill="currentColor" viewBox="0 0 24 24"
+                                class="SvgIcon__Icon-sc-9dg20d-0 SvgIcon-sc-9dg20d-1 cxStEi gjIExv">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19C12.8487 19 14.551 18.3729 15.9056 17.3199L18.2929 19.7071C18.6834 20.0976 19.3166 20.0976 19.7071 19.7071C20.0976 19.3166 20.0976 18.6834 19.7071 18.2929L17.3199 15.9056C18.3729 14.551 19 12.8487 19 11C19 6.58172 15.4183 3 11 3ZM5 11C5 7.68629 7.68629 5 11 5C14.3137 5 17 7.68629 17 11C17 14.3137 14.3137 17 11 17C7.68629 17 5 14.3137 5 11Z">
+                                </path>
+                            </svg>
+                        </button>
+
+                        <input id="search" name="search" class="form-search" type="search"
+                            placeholder="Buscar produto..." />
+                    </div>
+                </form>
+            </div>
+            <div class="nav-loja">
+                <div class="nav-favoritos">
+                    <svg data-testid="favorite-button" role="img" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink" fill="currentColor" viewBox="0 0 24 24"
+                        class="SvgIcon__Icon-sc-9dg20d-0 SvgIcon-sc-9dg20d-1 cxStEi gjIExv">
+                        <path
+                            d="M20.2541 4.73606C19.6833 4.17102 19.004 3.72618 18.2567 3.42812C17.5094 3.13006 16.7093 2.98488 15.9044 3.00124C14.4399 3.00958 13.0349 3.57912 11.9815 4.5915C10.8513 3.54671 9.35834 2.97813 7.81591 3.00509C6.27347 3.03204 4.80149 3.65244 3.70888 4.73606C1.16626 7.15758 1.48409 11.332 4.50799 14.4583L10.7193 20.4488C11.0509 20.7905 11.5043 20.9885 11.9815 21C12.4434 21.0007 12.8883 20.8262 13.2256 20.5121L13.4072 20.3404L13.9611 19.8254C14.5059 19.3104 15.2506 18.5875 16.2222 17.6478L18.4379 15.4883L19.4277 14.5215C22.497 11.3139 22.8784 7.20276 20.2541 4.73606ZM18.1201 13.2295L17.8931 13.4463L17.1666 14.1601L14.9509 16.3196C14.0428 17.2232 13.28 17.937 12.7352 18.452L11.9815 19.1929L5.7793 13.1572C3.45462 10.7537 3.1822 7.73586 4.98019 6.00104C5.36146 5.62075 5.81438 5.31903 6.31301 5.11317C6.81165 4.9073 7.3462 4.80134 7.88605 4.80134C8.4259 4.80134 8.96045 4.9073 9.45908 5.11317C9.95771 5.31903 10.4106 5.62075 10.7919 6.00104L10.8736 6.07332C10.9796 6.15344 11.077 6.24428 11.1642 6.34439L11.9815 7.19373L12.7988 6.34439L13.053 6.10043L13.1529 6.01911C13.5347 5.63473 13.9893 5.32956 14.4904 5.12128C14.9916 4.91301 15.5293 4.80576 16.0724 4.80576C16.6155 4.80576 17.1532 4.91301 17.6543 5.12128C18.1555 5.32956 18.6101 5.63473 18.9919 6.01911C20.7808 7.73586 20.5083 10.7628 18.1201 13.2295Z">
+                        </path>
+                        <title>Ir para favoritos</title>
+                    </svg>
+                </div>
+                <div class="nav-sacola">
+                    <svg data-testid="BagIcon" role="img" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink" fill="currentColor" viewBox="0 0 24 24"
+                        class="SvgIcon__Icon-sc-9dg20d-0 SvgIcon-sc-9dg20d-1 cxStEi gjIExv">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M7 6V4C7 3.46957 7.21071 2.96086 7.58579 2.58579C7.96086 2.21071 8.46957 2 9 2H15C15.5304 2 16.0391 2.21071 16.4142 2.58579C16.7893 2.96086 17 3.46957 17 4V6H19C20.1046 6 21 6.89543 21 8V19C21 20.6569 19.6569 22 18 22H6C4.34315 22 3 20.6569 3 19V8C3 6.89543 3.89543 6 5 6H7ZM5 8V19C5 19.5523 5.44772 20 6 20H18C18.5523 20 19 19.5523 19 19V8H5ZM9 6H15V4H9V6Z">
+                        </path>
+                        <title>Sacola vazia</title>
+                    </svg>
+                </div>
+                <div class="caixa-redonda">
+                    <img class="gb_O gbii"
+                        src="https://lh3.google.com/u/0/ogw/AF2bZyiJTmNcpBPpzrkmAQN34IrlphxdNk2oN7RrI5jMxpN-QQ=s32-c-mo"
+                        srcset="
+                  https://lh3.google.com/u/0/ogw/AF2bZyiJTmNcpBPpzrkmAQN34IrlphxdNk2oN7RrI5jMxpN-QQ=s32-c-mo 1x,
+                  https://lh3.google.com/u/0/ogw/AF2bZyiJTmNcpBPpzrkmAQN34IrlphxdNk2oN7RrI5jMxpN-QQ=s64-c-mo 2x
+                " alt="" aria-hidden="true" data-noaft="" />
+                    <div class="nameuser">{{user.username }}</div>
+                </div>
+                <div class="logout"> <a class="nav-link" href="{%url  'logout'%}">
+                        Sair
+                    </a></div>
+
+            </div>
+        </nav>
+    </header>
+    <main>
+        {% block content %}
+
+        {% endblock %}
+    </main>
+    <footer class="footer">
+        <div class="container-footer">
+            &copy; 2025 Gestor De Estoque.
+        </div>
+    </footer>
+    <script src="/static/js/stock_new/stock_imagen.js"></script>
+    <script src="/static/js/Mascara_moeda.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Adicionar Produto {% endblock %}
+<style>
+
+</style>
+{% block content %}
+<section class="container-new">
+    <h2>Adicionar Novo Produto</h2>
+
+    <form method="post" enctype="multipart/form-data">
+
+        <div class="form-new">
+
+            {% csrf_token %}
+
+            <div class="container-itens">
+                <label for="id_name">Produto {{ form.name }}</label>
+                <label for="id_barcode">Codigo de barras {{form.barcode }}</label>
+                <label for="id_description"> Descrição {{ form.description }}</label>
+                <label for="id_images"> imagens
+                    <div class="imagens" id="id_images">
+                        <label for="id_images_0" class="label-img"> imagen 1 {{ form.images_0 }}</label>
+                        <label for="id_images_1" class="label-img">imagen 2 {{ form.images_1 }} </label>
+                        <label for="id_images_2" class="label-img"> imagen 3 {{ form.images_2 }}</label>
+                        <label for="id_images_3" class="label-img">imagen 4{{ form.images_3 }}</label>
+                    </div>
+                </label>
+
+                <label for="id_price"> preço {{ form.price }}</label>
+                <label for="id_quantity">quantidade {{ form.quantity }}</label>
+                <label for="id_color">cores {{ form.color }}</label>
+                <label for="id_brand"> marca {{ form.brand }}</label>
+                <label for="id_category">categoria {{ form.category }}</label>
+                <label for="id_collections"> coleções {{ form.collections }}</label>
+                <label for="id_variations"> variações {{ form.variations }}</label>
+                <label for="id_number_active"> mostrar Numeração {{ form.number_active }}</label>
+                <label for="id_size_active">mostrar Tamanhos {{ form.size_active }}</label>
+
+            </div>
+
+            <div class="container-size">
+                <label> Tamanhos </label>
+                {% for field in size_form %}
+
+                {{ field.label_tag }} {{ field }}
+
+                {% endfor %}
+            </div>
+
+            <div class="container-number">
+                <label> Numerações </label>
+                {% for numbers in number_form %}
+
+                {{ numbers.label_tag }} {{ numbers }}
+
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="buttons">
+            <button type="submit" class="bnt bnt-salvar" name="action" value="save_add">Salvar e adicionar
+                outro</button>
+            <button type="submit" class="bnt bnt-salvar" name="action" value="save_list">Salvar e ir para lista</button>
+            <a href="{% url 'stock_list_view'%}" class="bnt bnt-cancelar"> cancelar</a>
+        </div>
+    </form>
+
+    {% if form.errors %}
+    <div class="error-messages">
+        <ul>
+            {% for field, errors in form.errors.items %}
+            <li>
+                <strong>{{ field|capfirst }}:</strong>
+                {% for error in errors %}
+                {{ error }}
+                {% endfor %}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+</section>
+
+{% endblock %}

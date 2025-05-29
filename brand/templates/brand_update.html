@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %} Atualizar Marca {% endblock %}
+{% block content %}
+<h2>Atualizar Marca: {{ brand.name_brand }}</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" name="action" value="save_list">Salvar</button>
+</form>
+{% if form.errors %}
+<ul>
+    {% for field, errors in form.errors.items %}
+    <li>{{ field }}: {{ errors|join:", " }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+{% endblock %}

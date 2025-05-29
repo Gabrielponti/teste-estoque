@@ -1,0 +1,46 @@
+{% extends 'base.html' %} {% block title %} Produtos {% endblock %}
+{% block content %}
+
+<section class="section">
+    <div class="produtos">
+        {% if stocks %}
+        <div class="container-itens">
+            {% for stock in stocks %}
+            <a href="{% url 'stock_detail_view' stock.pk %}">
+                <div class="container-item">
+                    <div class="container-text">
+                        <p class="title">{{ stock.name }}</p>
+                        <p>{{ stock.description }}</p>
+                        <p>R$ {{ stock.price }}</p>
+                    </div>
+
+                    <div class="container-imagens">
+                        {% if stock.images_0 %}
+                        <img src=" {{ stock.images_0.url }}" alt="Imagem 1">
+                        {% else %}
+                        {% if stock.images_1 %}
+                        <img src=" {{ stock.images_1.url }}" alt="Imagem 1">
+                        {% else %}
+                        {% if stock.images_2 %}
+                        <img src=" {{ stock.images_0.url }}" alt="Imagem 1">
+                        {% else %}
+                        {% if stock.images_3 %}
+                        <img src=" {{ stock.images_3.url }}" alt="Imagem 1">
+                        {% else %}
+                        <img src="/static/media/sem_imagem_sem_fundo.png" alt="Imagem Não encontrada">
+                        <p>Imagem não Encontrada</p>
+
+                        {% endif %}{% endif %} {% endif %}{% endif %}
+                    </div>
+
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p>Nenhum item encontrado.</p>
+        {% endif %}
+    </div>
+</section>
+
+{% endblock %}

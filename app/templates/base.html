@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static '../static/telas_css/base/base.css' %}">
+    <link rel="stylesheet" href="{% static '../static/telas_css/base/header.css'%}">
+    <link rel="stylesheet" href="{% static '../static/telas_css/base/main.css'%}">
+    <link rel="stylesheet" href="{% static '../static/telas_css/base/errors.css'%}">
+    <link rel="stylesheet" href="{% static '../static/telas_css/base/footer.css'%}">
+    <link rel="stylesheet" href="{% static '../static/telas_css/stock/stock_new.css'%}">
+    <link rel="stylesheet" href="{% static '../static/telas_css/stock/stock_list.css'%}">
+    <title>
+        {% block title %}{% endblock %}
+    </title>
+</head>
+
+<body>
+
+    <header class="header">
+        <nav class="nav-bar">
+            <div class="logo">
+                <a href="{% url 'StockBaseView' %}">
+                    <img src="{% static '../static/media/image.png' %}" alt="logo-loja" />
+                </a>
+
+            </div>
+            <div class="nav-list">
+                <ul>
+                    <li><a class="nav-link" href="{% url 'stock_list_view' %}">Estoque</a></li>
+                    <li><a class="nav-link" href="{% url 'stock_create_view' %}">Produtos</a></li>
+                    <li><a class="nav-link" href="{% url 'color_list_view' %}">Cores</a></li>
+                    <li><a class="nav-link" href="{% url 'brand_list_view' %}">Marcas</a></li>
+                    <li><a class="nav-link" href="{% url 'collection_list_view' %}">Coleções</a></li>
+                    <li><a class="nav-link" href="{% url 'number_list_view' %}">Numerações</a></li>
+                    <li><a class="nav-link" href="{% url 'size_list_view' %}">Tamanhos</a></li>
+                </ul>
+            </div>
+            <div class="nav-div-form">
+                <form action="{%url 'stock_list_view'%}" class="form-header">
+                    <div class="container-form-header">
+
+                        <button type="submit" class="button-header">
+
+                            <svg data-testid="SearchIcon" aria-hidden="true" version="1.1"
+                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                fill="currentColor" viewBox="0 0 24 24"
+                                class="SvgIcon__Icon-sc-9dg20d-0 SvgIcon-sc-9dg20d-1 cxStEi gjIExv">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19C12.8487 19 14.551 18.3729 15.9056 17.3199L18.2929 19.7071C18.6834 20.0976 19.3166 20.0976 19.7071 19.7071C20.0976 19.3166 20.0976 18.6834 19.7071 18.2929L17.3199 15.9056C18.3729 14.551 19 12.8487 19 11C19 6.58172 15.4183 3 11 3ZM5 11C5 7.68629 7.68629 5 11 5C14.3137 5 17 7.68629 17 11C17 14.3137 14.3137 17 11 17C7.68629 17 5 14.3137 5 11Z">
+                                </path>
+                            </svg>
+                        </button>
+
+                        <input id="search" name="search" class="form-search" type="search"
+                            placeholder="Buscar produto..." />
+                    </div>
+                </form>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %} {% endblock %}
+    </main>
+
+    <footer class="footer">
+        <div class="container-footer">
+            &copy; 2025 Gestor De Estoque.
+        </div>
+    </footer>
+    <script src="/static/js/Mascara_moeda.js"></script>
+
+</body>
+
+</html>

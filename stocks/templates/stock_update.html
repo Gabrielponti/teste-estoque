@@ -1,0 +1,31 @@
+{% if form.errors %}
+<div class="form-errors">
+    <ul>
+        {% for field in form %}
+        {% for error in field.errors %}
+        <li>{{ error }}</li>
+        {% endfor %}
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <h3>Tamanhos e Quantidades</h3>
+    {% for field in size_form %}
+    <div style="margin-bottom: 10px">
+        {{ field.label_tag }} {{ field }}
+    </div>
+    {% endfor %}
+
+    <h3>Números e Quantidades</h3>
+    {% for numbers in number_form %}
+    <div style="margin-bottom: 10px">
+        {{ numbers.label_tag }} {{ numbers }}
+    </div>
+    {% endfor %}
+    <button type="submit">Atualizar</button>
+</form>

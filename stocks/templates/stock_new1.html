@@ -1,0 +1,132 @@
+{% extends "base.html" %}{% block title %}Adicionar Novo Produto{% endblock %}
+{% block content %}
+<style>
+    .imagens {
+        display: flex;
+        gap: 10px;
+    }
+</style>
+
+
+<section class="section-new-product">
+    <h1>Cadastrar Novo Produto</h1>
+
+    <form method="post" enctype="multipart/form-data" class="form-new-product">
+        {% csrf_token %}
+
+        <div class="container-new-product">
+            <label for="id_name">nome</label>
+            {{ form.name }}
+
+            <label for="id_description">Descrição</label>
+            {{ form.description }}
+
+            <label for="id_price">preço</label>
+            {{ form.price }}
+
+            <label for="id_quantity">quantidade</label>
+            {{ form.quantity }}
+
+
+            <label for="id_variations">Variações</label>
+            {{ form.variations }}
+
+
+            <div class="list">
+                <label for="id_size">Tamanhos</label>
+                {{ form.size }}
+                {{ form.size_quantity }}
+            </div>
+
+            <div class="list">
+                <label for="id_number">números</label>
+                {{ form.number }}
+            </div>
+
+            <div class="list">
+                <label for="id_collections">Coleções</label>
+                {{ form.collections }}
+            </div>
+        </div>
+
+        <div class="imagens_preview">
+            <img id="preview_0" style="max-width: 300px; display: none;">
+            <button type="button" id="remove_0" style="display: none;">Remover imagem</button>
+            <img id="preview_1" style="max-width: 300px; display: none;">
+            <button type="button" id="remove_1" style="display: none;">Remover imagem</button>
+            <img id="preview_2" style="max-width: 300px; display: none;">
+            <button type="button" id="remove_2" style="display: none;">Remover imagem</button>
+            <img id="preview_3" style="max-width: 300px; display: none;">
+            <button type="button" id="remove_3" style="display: none;">Remover imagem</button>
+        </div>
+        <div class="imagens">
+            {{ form.images_0 }}
+            {{ form.images_1 }}
+            {{ form.images_2 }}
+            {{ form.images_3 }}
+        </div>
+
+        <button type="submit">Salvar Produto</button>
+    </form>
+    </div>
+
+
+</section>
+
+
+<script>
+    function previewImagemComRemover(inputId, previewId, removeBtnId) {
+        const input = document.getElementById(inputId);
+        const preview = document.getElementById(previewId);
+        const removeBtn = document.getElementById(removeBtnId);
+
+        input.addEventListener('change', function (event) {
+            const file = event.target.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                    removeBtn.style.display = 'inline-block'; // Mostra botão
+                }
+                reader.readAsDataURL(file);
+            } else {
+                limparImagem();
+            }
+        });
+
+        removeBtn.addEventListener('click', function () {
+            limparImagem();
+        });
+
+        function limparImagem() {
+            input.value = ''; // Limpa o input file
+            preview.src = '';
+            preview.style.display = 'none';
+            removeBtn.style.display = 'none';
+        }
+    }
+
+    // Chamando a função
+    previewImagemComRemover('id_images_0', 'preview_0', 'remove_0');
+    previewImagemComRemover('id_images_1', 'preview_1', 'remove_1');
+    previewImagemComRemover('id_images_2', 'preview_2', 'remove_2');
+    previewImagemComRemover('id_images_3', 'preview_3', 'remove_3');
+
+
+    // Função auxiliar para criar FileList
+    const mascaraMoeda = (event) => {
+        const onlyDigits = event.target.value.replace(/\D/g, "").padStart(3, "0");
+        const digitsFloat = onlyDigits.slice(0, -2) + "." + onlyDigits.slice(-2);
+        event.target.value = maskCurrency(digitsFloat);
+    };
+
+    const maskCurrency = (valor, locale = "pt-BR", currency = "BRL") => {
+        return new Intl.NumberFormat(locale, { minimumFractionDigits: 2 }).format(
+            valor
+        );
+    };
+
+</script>
+{% endblock %}

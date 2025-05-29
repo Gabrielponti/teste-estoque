@@ -1,0 +1,49 @@
+{% extends "base.html" %}{% block title %}Adicionar Novo Produto{% endblock %}
+{% block content %}
+
+<section class="section-new-product">
+    <h1> Atualizar Produto</h1>
+
+    <div class="container-form">
+        <div>
+
+            <div id="image-preview-container" class="img-preview"></div>
+        </div>
+
+        <div>
+            <form method="post" enctype="multipart/form-data" class="form-new-product">
+                {% csrf_token %}
+                <h3>Informações do Produto</h3>
+
+                <div class="container-new-product">
+                    {{ form.as_p}}
+                </div>
+                <br>
+                <button type="submit">Salvar Produto</button>
+            </form>
+        </div>
+    </div>
+
+
+
+</section>
+
+
+<script>
+
+
+    // Função auxiliar para criar FileList
+    const mascaraMoeda = (event) => {
+        const onlyDigits = event.target.value.replace(/\D/g, "").padStart(3, "0");
+        const digitsFloat = onlyDigits.slice(0, -2) + "." + onlyDigits.slice(-2);
+        event.target.value = maskCurrency(digitsFloat);
+    };
+
+    const maskCurrency = (valor, locale = "pt-BR", currency = "BRL") => {
+        return new Intl.NumberFormat(locale, { minimumFractionDigits: 2 }).format(
+            valor
+        );
+    };
+
+</script>
+{% endblock %}

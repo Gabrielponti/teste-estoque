@@ -1,0 +1,5 @@
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Delete</button>
+    <a href="{% url 'stock_update_view' pk=stock.pk %}" class="btn btn-secondary">Cancelar</a>
+</form>

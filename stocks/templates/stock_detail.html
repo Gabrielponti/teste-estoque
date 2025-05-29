@@ -1,0 +1,39 @@
+{% extends 'base.html' %} {% block title %} Produto object.name {% endblock %}
+{% block content %}
+<div class="container-item">
+    <div class="container-text">
+        <p class="title">{{ object.name }}</p>
+        <p>{{ object.description }}</p>
+        <p>R$ {{ object.price }}</p>
+        {% if object.number_active %}
+        <p>Numeração {{ object.number_form }}</p>
+
+        </p>
+        {% else %}
+    </div>
+
+    <div class="container-imagens">
+        {% if object.images_0 %}
+        <img src=" {{ stock.images_0.url }}" alt="Imagem 1">
+        {% else %}
+        {% if object.images_1 %}
+        <img src=" {{ stock.images_1.url }}" alt="Imagem 1">
+        {% else %}
+        {% if object.images_2 %}
+        <img src=" {{ stock.images_0.url }}" alt="Imagem 1">
+        {% else %}
+        {% if object.images_3 %}
+        <img src=" {{ stock.images_3.url }}" alt="Imagem 1">
+        {% else %}
+        <img src="/static/media/sem_imagem_sem_fundo.png" alt="Imagem Não encontrada">
+        <p>Imagem não Encontrada</p>
+
+        {% endif %}{% endif %} {% endif %}{% endif %}{% endif %}
+    </div>
+    <div class="buttons-container">
+        <a href="{% url 'stock_update_view' pk=object.pk %}" class="btn btn-primary">Editar</a>
+        <a href="{% url 'stock_delete_view' pk=object.pk %}" class="btn btn-danger">Deletar</a>
+    </div>
+
+</div>
+{% endblock %}

@@ -123,7 +123,7 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",  # ou o diretório onde estão seus arquivos estáticos
 ]
 
-STATIC_ROOT = BASE_DIR / "staticfiles" 
+STATIC_ROOT = BASE_DIR / "static" 
 
  
 # para usar o css e favicon 

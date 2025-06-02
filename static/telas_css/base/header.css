@@ -7,11 +7,11 @@ black
 white
 */
 /* class */
-
 .header {
   background-color: #24252a;
   box-shadow: 0rem 0.3rem 1rem #464646;
   position: fixed;
+  top: 0;
   left: 0;
   right: 0;
 }

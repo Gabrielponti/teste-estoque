@@ -12,9 +12,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-&u&9zua4p#i0$j%7x4rk$3kwq(4ssz8yszk!etm-3a_8fvbca%'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["https://teste-estoque-3.onrender.com"]
 
 
 # Application definition

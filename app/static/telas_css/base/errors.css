@@ -1,0 +1,14 @@
+.error-messages {
+  color: red;
+  font-size: 14px;
+  margin: 10px 0;
+}
+
+.error-messages ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.error-messages li {
+  margin-bottom: 5px;
+}

@@ -1,0 +1,153 @@
+/*  TEGS GLOBAIS */
+
+/* 
+paleta de cores 
+black
+#d6d6d6
+white
+*/
+/* class */
+.header {
+  background-color: #24252a;
+  box-shadow: 0rem 0.3rem 1rem #464646;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.nav-bar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  color: #fff;
+}
+
+.logo img {
+  width: 14rem;
+}
+
+.nav-list {
+  display: flex;
+  align-items: center;
+}
+
+.nav-list ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4rem;
+  list-style: none;
+  text-decoration: none;
+}
+
+.nav-link::first-letter {
+  text-transform: uppercase;
+}
+
+.nav-link:link,
+.nav-link:visited {
+  display: flex;
+  text-decoration: none;
+  font-size: 1.6rem;
+  color: #fff;
+  font-weight: 700;
+  line-height: 9rem;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+.nav-link:hover,
+.nav-link:active {
+  text-decoration: underline;
+  text-decoration-thickness: 0.2rem;
+}
+
+.form-header {
+  display: flex;
+  justify-items: center;
+  background-color: transparent;
+}
+
+.nav-div-form {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 4rem;
+  background-color: #fff;
+  border-radius: 2rem;
+}
+
+.container-form-header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  padding-left: 1rem;
+}
+
+.button-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  background-color: inherit;
+  width: 3rem;
+  border-radius: 50%;
+}
+.form-search {
+  width: 26rem;
+  height: 4rem;
+  background-color: transparent;
+  font-size: 1.6rem;
+  padding-left: 1rem;
+  border: none;
+}
+
+.form-search:focus {
+  outline: none !important;
+}
+
+.nav-loja {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.6rem;
+  color: #fff;
+}
+
+.nav-favoritos,
+.nav-sacola {
+  width: 2.4rem;
+
+  display: flex;
+}
+
+.caixa-redonda {
+  display: flex;
+  text-align: center;
+}
+
+.caixa-redonda img {
+  border-radius: 50%;
+  padding: 1rem;
+  margin: auto;
+}
+
+.caixa-redonda:hover .nameuser {
+  display: flex;
+  cursor: pointer;
+}
+
+.nameuser {
+  display: none;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}

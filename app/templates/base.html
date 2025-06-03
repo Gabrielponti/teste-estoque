@@ -17,6 +17,250 @@
         {% block title %}{% endblock %}
     </title>
 </head>
+<style>
+    /* Sistema de Tamanhos - https://typescale.com/ 
+
+Fontes - Minor Third - 1.200 - Em PX
+4.4 - 5.4 - 6.4 - 7.7 - 9.2 - 11.1 - 13.3 - 16 - 19.2 - 23 - 27.6 - 33.2 - 39.8 - 47.8 - 57.3 - 68.8 - 82.6
+
+Espaçamentos - Major Third - 1.250 - Em PX
+2.1 - 2.7 - 3.3 - 4.2 - 5.2 - 6.5 - 8.2 - 10.2 - 12.8 - 16 - 20 - 25 - 31.2 - 39 - 48.8 - 61 - 76.3 - 95.4 - 119.2
+
+*/
+
+    @import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+
+    :root {
+        --color0: #f0f0f0;
+        --color1: #d7f23a;
+        --color2: #b6c851;
+        --color3: #939d5a;
+        --color4: #6e7355;
+        --color5: #474841;
+        --color6: #313325;
+        --color7: #000000;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html {
+        font-size: 62.5%;
+    }
+
+    body {
+        background-color: var(--color0);
+        font-family: "Inconsolata", monospace, sans-serif;
+        font-optical-sizing: auto;
+        font-weight: normal;
+        font-style: normal;
+        font-variation-settings: "wdth" 100;
+        font-size: 1.9rem;
+        color: var(--color0);
+    }
+
+    /*  TEGS GLOBAIS */
+
+    /* 
+paleta de cores 
+black
+#d6d6d6
+white
+*/
+    /* class */
+    .header {
+        background-color: #24252a;
+        box-shadow: 0rem 0.3rem 1rem #464646;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+    }
+
+    .nav-bar {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        color: #fff;
+    }
+
+    .logo img {
+        width: 14rem;
+    }
+
+    .nav-list {
+        display: flex;
+        align-items: center;
+    }
+
+    .nav-list ul {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 4rem;
+        list-style: none;
+        text-decoration: none;
+    }
+
+    .nav-link::first-letter {
+        text-transform: uppercase;
+    }
+
+    .nav-link:link,
+    .nav-link:visited {
+        display: flex;
+        text-decoration: none;
+        font-size: 1.6rem;
+        color: #fff;
+        font-weight: 700;
+        line-height: 9rem;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .nav-link:hover,
+    .nav-link:active {
+        text-decoration: underline;
+        text-decoration-thickness: 0.2rem;
+    }
+
+    .form-header {
+        display: flex;
+        justify-items: center;
+        background-color: transparent;
+    }
+
+    .nav-div-form {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        height: 4rem;
+        background-color: #fff;
+        border-radius: 2rem;
+    }
+
+    .container-form-header {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+
+        padding-left: 1rem;
+    }
+
+    .button-header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        border: none;
+        background-color: inherit;
+        width: 3rem;
+        border-radius: 50%;
+    }
+
+    .form-search {
+        width: 26rem;
+        height: 4rem;
+        background-color: transparent;
+        font-size: 1.6rem;
+        padding-left: 1rem;
+        border: none;
+    }
+
+    .form-search:focus {
+        outline: none !important;
+    }
+
+    .nav-loja {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1.6rem;
+        color: #fff;
+    }
+
+    .nav-favoritos,
+    .nav-sacola {
+        width: 2.4rem;
+
+        display: flex;
+    }
+
+    .caixa-redonda {
+        display: flex;
+        text-align: center;
+    }
+
+    .caixa-redonda img {
+        border-radius: 50%;
+        padding: 1rem;
+        margin: auto;
+    }
+
+    .caixa-redonda:hover .nameuser {
+        display: flex;
+        cursor: pointer;
+    }
+
+    .nameuser {
+        display: none;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Corpo */
+    main {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+        margin-top: 8rem;
+    }
+
+    /* rodape */
+    .footer {
+        display: flex;
+        width: 100%;
+        height: 10rem;
+        justify-content: center;
+        align-items: center;
+
+        bottom: 0;
+    }
+
+    .footer-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+        background-color: #333;
+        color: #fff;
+    }
+
+    /* erros de logis */
+    .error-messages {
+        color: red;
+        font-size: 14px;
+        margin: 10px 0;
+    }
+
+    .error-messages ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .error-messages li {
+        margin-bottom: 5px;
+    }
+</style>
 
 <body>
 
